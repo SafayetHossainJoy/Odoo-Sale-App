@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:sale/Model_class/sales_Orderlist.dart';
-import '../Http/custome_http_request.dart';
+
 
 class sales_widget extends StatelessWidget {
   const sales_widget({
