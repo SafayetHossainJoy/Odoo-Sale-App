@@ -400,10 +400,7 @@ class _NewCustomerState extends State<NewCustomer> {
                     await controller.saveuser();
                   },
                   child: InkWell(
-                     onTap: () async {
-                    await controller.saveuser();
-                  },
-                    
+                 
                     child: const Text(
                       'Save',
                       style: TextStyle(fontSize: 24),
