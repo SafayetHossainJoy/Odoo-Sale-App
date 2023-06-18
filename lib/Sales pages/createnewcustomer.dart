@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:sale/Controller/UserController.dart';
 import 'package:sale/widgets/custom_textfor_customer.dart';
 
-import 'add_product.dart';
 import 'sales_page.dart';
 
 class NewCustomer extends StatefulWidget {
@@ -31,11 +30,19 @@ class _NewCustomerState extends State<NewCustomer> {
   TextEditingController zipController = TextEditingController();
 
   Future<Map<String, dynamic>> postData() async {
-    String apiUrl = 'http://testtrivoz.xsellencebdltd.com/api/v1/partners';
+    String apiUrl = 'http://testii.xsellencebdltd.com/api/v1/partners';
     Map data = {
-      'name': 'Safayet flutter 90',
-      'mobile': '+8801932629230',
-      'email': 'safayet11534@gmail.com',
+    "name": "AVS",
+    "company_id": 1,
+    "mobile": "+8801932629235",
+    "email": "safayet534@gmail.com",
+    "street": "block-E, road-05",
+    "street2": "Rampura",
+    "city": "Dhaka",
+    "zip": "1219",
+    "country_id": 19,
+    "function": "Senior Executive",
+    "website": "safa.bd.com"
     };
     var body = json.encode({'params': data});
 
@@ -114,7 +121,9 @@ class _NewCustomerState extends State<NewCustomer> {
                   return "*user name is long";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -141,7 +150,9 @@ class _NewCustomerState extends State<NewCustomer> {
                   return "*user name is long";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 10,
@@ -188,7 +199,9 @@ class _NewCustomerState extends State<NewCustomer> {
                         return "*city required";
                       }
                     },
-                    validatorFn: (value) {},
+                    validatorFn: (value) {
+                      return null;
+                    },
                   ),
                 ),
                 // const SizedBox(
@@ -199,14 +212,16 @@ class _NewCustomerState extends State<NewCustomer> {
                     child: CustomTextFieldforcustomer(
                       lebelText: 'Zip-code',
                       hintText: 'Enter your Zip',
-                      controller: zipController,
+                      controller: controller.codetext,
                       keytype: TextInputType.number,
                       validator: (value) {
                         if (value.isEmpty) {
                           return "*zip_code required";
                         }
                       },
-                      validatorFn: (value) {},
+                      validatorFn: (value) {
+                        return null;
+                      },
                     )),
               ],
             ),
@@ -230,7 +245,9 @@ class _NewCustomerState extends State<NewCustomer> {
                   return "*country required";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -253,7 +270,9 @@ class _NewCustomerState extends State<NewCustomer> {
                   return "*Tax ID required";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -269,13 +288,15 @@ class _NewCustomerState extends State<NewCustomer> {
             CustomTextFieldforcustomer(
               lebelText: 'Job Position',
               hintText: 'Enter your job position',
-              controller: jobPositionController,
+              controller: controller.functiontext,
               validator: (value) {
                 if (value.isEmpty) {
                   return "*Job Position";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -298,7 +319,9 @@ class _NewCustomerState extends State<NewCustomer> {
                   return "*contact number required";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -326,7 +349,9 @@ class _NewCustomerState extends State<NewCustomer> {
                   return "*wrong email address";
                 }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -342,7 +367,7 @@ class _NewCustomerState extends State<NewCustomer> {
             CustomTextFieldforcustomer(
               lebelText: 'Website Link',
               hintText: 'Enter your website link',
-              controller: websiteController,
+              controller: controller.websitetext,
               validator: (value) {
                 // if (value.isEmpty) {
                 //   return "*username required";
@@ -353,7 +378,9 @@ class _NewCustomerState extends State<NewCustomer> {
                 //   return "*user name is long";
                 // }
               },
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 15,
@@ -370,7 +397,9 @@ class _NewCustomerState extends State<NewCustomer> {
               lebelText: 'Tags',
               hintText: 'Enter your Tags',
               controller: tagController,
-              validatorFn: (value) {},
+              validatorFn: (value) {
+                return null;
+              },
             ),
             const SizedBox(
               height: 25,
