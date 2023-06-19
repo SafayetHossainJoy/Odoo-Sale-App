@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:sale/Controller/UserController.dart';
+import 'package:sale/Partner_Controller/UserController.dart';
 import 'package:sale/widgets/custom_textfor_customer.dart';
 
 import 'sales_page.dart';
