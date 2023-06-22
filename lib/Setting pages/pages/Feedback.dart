@@ -182,6 +182,7 @@ class _ReviewState extends State<Review> {
                         if (value.length < 3) {
                           return "*Write more then three word";
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                           border: OutlineInputBorder(

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:sale/widgets/custom_TextField.dart';
-import 'package:sale/widgets/widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Navigation Bar/navigation_ber.dart';
@@ -128,13 +127,16 @@ class _LoginPageState extends State<LoginPage> {
             validatorFn: (value) {
               (input) =>
                   !input.contains('@') ? "Email Id should be valid" : null;
+              return null;
             },
           ),
           CustomTextField(
             controller: passwordController,
             hintText: "Enter your password",
             prefixIcon: const Icon(Icons.vpn_key),
-            validatorFn: (value) {},
+            validatorFn: (value) {
+              return null;
+            },
             obscureText: hidePassword,
             suffixIcon: IconButton(
               onPressed: () {

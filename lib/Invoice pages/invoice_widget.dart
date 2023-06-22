@@ -1,55 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:simple_speed_dial/simple_speed_dial.dart';
 
-class invoice_widget extends StatelessWidget {
-  const invoice_widget({
+
+class InvoicWidget extends StatelessWidget {
+  final String name;
+  final String companyName;
+  final String state;
+  final String price;
+  final String date;
+  const InvoicWidget({
     Key? key,
+    required this.name,
+    required this.companyName,
+    required this.state,
+    required this.price,
+    required this.date,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(10, 10, 10, 6),
         height: 120,
         width: double.maxFinite,
         child: Card(
           color: const Color.fromARGB(185, 255, 255, 255),
           elevation: 5,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Stack(children: <Widget>[
-              Align(
-                alignment: Alignment.topRight,
-                child: Stack(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 0),
-                      child: Row(
-                        children: <Widget>[
-                          salesorder(),
-                          const Spacer(),
-                          AllIcons(),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 50, // <-- SEE HERE
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 0),
-                      child: Row(
-                        children: <Widget>[
-                          company(),
-                          const Spacer(),
-                          Totalstatus(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  salesorder(name: name),
+                  const Spacer(),
+                  AllIcons(),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  company(companyName: companyName, date: date),
+                  const Spacer(),
+                  Totalstatus(state: state, price: price),
+                ],
               )
-            ]),
+            ],
           ),
         ),
       ),
@@ -57,15 +49,12 @@ class invoice_widget extends StatelessWidget {
   }
 }
 
-Widget salesorder() {
-  return Align(
-    alignment: Alignment.topLeft,
-    child: RichText(
-      text: const TextSpan(
-        text: "INV008",
-        style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
-      ),
+Widget salesorder({required String name}) {
+  return RichText(
+    text: TextSpan(
+      text: name,
+      style: const TextStyle(
+          fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
     ),
   );
 }
@@ -76,9 +65,6 @@ Widget AllIcons() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const SizedBox(
-          width: 8,
-        ),
         Row(
           children: [
             SizedBox(
@@ -95,47 +81,34 @@ Widget AllIcons() {
   );
 }
 
-Widget company() {
-  return Align(
-    alignment: Alignment.bottomLeft,
-    child: RichText(
-      text: const TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-              text: "\nABG(1110)\nSO008",
-              style: TextStyle(
-                color: Color.fromARGB(147, 0, 0, 0),
-                fontSize: 15,
-              )),
-          TextSpan(
-              text: "\n11/23/2022",
-              style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold)),
-        ],
-      ),
-    ),
+Widget company({required String companyName, required String date}) {
+  return Column(
+    children: [
+      Text(companyName,
+          style: TextStyle(
+            color: Color.fromARGB(147, 0, 0, 0),
+            fontSize: 15,
+          )),
+      Text(date,
+          style: TextStyle(
+            color: Color.fromARGB(147, 0, 0, 0),
+            fontSize: 15,
+          )),
+    ],
   );
 }
 
-Widget Totalstatus() {
-  return Align(
-    alignment: Alignment.bottomRight,
-    child: RichText(
-      text: const TextSpan(
-        text: '\n100,000 BDT',
+Widget Totalstatus({required String price, required String state}) {
+  return Column(
+    children: [
+      Text(
+        '$price BDT',
         style: TextStyle(
             fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
-        children: <TextSpan>[
-          TextSpan(
-              text: '\n          Posted',
-              style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
-        ],
       ),
-    ),
+      Text(state,
+          style: TextStyle(
+              color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold)),
+    ],
   );
 }

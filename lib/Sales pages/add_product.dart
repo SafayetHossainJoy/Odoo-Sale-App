@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:sale/widgets/band_color.dart';
 import 'package:sale/widgets/custom_textfor_customer.dart';
 import 'package:sale/widgets/widget.dart';
@@ -46,7 +44,9 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final double height = MediaQuery.of(context).size.height;
+    // ignore: unused_local_variable
     final double weidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -95,7 +95,9 @@ class _AddProductState extends State<AddProduct> {
                       return "*Customer name is long";
                     }
                   },
-                  validatorFn: (value) {},
+                  validatorFn: (value) {
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -117,7 +119,9 @@ class _AddProductState extends State<AddProduct> {
                       return "*date required";
                     }
                   },
-                  validatorFn: (value) {},
+                  validatorFn: (value) {
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -140,7 +144,9 @@ class _AddProductState extends State<AddProduct> {
                       return "*Price List required";
                     }
                   },
-                  validatorFn: (value) {},
+                  validatorFn: (value) {
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 12,
@@ -217,7 +223,9 @@ class _AddProductState extends State<AddProduct> {
                             return "*Discount required";
                           }
                         },
-                        validatorFn: (value) {},
+                        validatorFn: (value) {
+                          return null;
+                        },
                       ),
                     ),
                     // const SizedBox(
@@ -234,7 +242,9 @@ class _AddProductState extends State<AddProduct> {
                               return "*termsandconditions required";
                             }
                           },
-                          validatorFn: (value) {},
+                          validatorFn: (value) {
+                            return null;
+                          },
                         )),
                   ],
                 ),

@@ -44,6 +44,7 @@ dependencies:
   simple_speed_dial: ^0.1.7
   get: ^4.6.5
   filter_list: ^1.0.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

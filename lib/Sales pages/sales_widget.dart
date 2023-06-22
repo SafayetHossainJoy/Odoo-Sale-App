@@ -1,26 +1,34 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart' as http;
-import 'package:sale/Model_class/sales_Orderlist.dart';
 
-
-class sales_widget extends StatelessWidget {
-  const sales_widget({
+class SalesWidget extends StatelessWidget {
+  final String name;
+  final String customerName;
+  final String companyName;
+  final String date;
+  final String state;
+  final String price;
+  const SalesWidget({
     Key? key,
+    required this.name,
+    required this.customerName,
+    required this.companyName,
+    required this.date,
+    required this.state,
+    required this.price,
   }) : super(key: key);
 
-Future<SalesQuotation?> fetchSalesQuotation() async {
-  final url = Uri.parse('http://testtrivoz.xsellencebdltd.com/api/v1/sales');
-  final response = await http.post(url, body: '{"params":{"name": "S06607796"}}');
-  if (response.statusCode == 200) {
-    return salesQuotationFromJson(response.body);
-  } else {
-    throw Exception('Failed to fetch sales quotation');
-  }
-}
- /*   getSalesQuotationData() async {
+  // Future<SalesQuotation?> fetchSalesQuotation() async {
+  //   final url = Uri.parse('http://testtrivoz.xsellencebdltd.com/api/v1/sales');
+  //   final response =
+  //       await http.post(url, body: '{"params":{"name": "S06607796"}}');
+  //   if (response.statusCode == 200) {
+  //     return salesQuotationFromJson(response.body);
+  //   } else {
+  //     throw Exception('Failed to fetch sales quotation');
+  //   }
+  // }
+  /*   getSalesQuotationData() async {
     List<SalesQuotation> orderData = [];
     var response = await http.get(
         Uri.parse("http://testtrivoz.xsellencebdltd.com/api/v1/sales"),
@@ -37,11 +45,11 @@ Future<SalesQuotation?> fetchSalesQuotation() async {
 //   final response = await http.get(Uri.parse('http://testtrivoz.xsellencebdltd.com/api/v1/sales'));
 //   if (response.statusCode == 200) {
 //     return SalesQuotation.fromJson(json.decode(response.body));
-    
+
 //   } else {
 //     throw Exception('Failed to load sales quotation');
 //   }
-  
+
 // }
 
 /* 
@@ -64,59 +72,50 @@ Future<SalesQuotation?> fetchSalesQuotation() async {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 6),
+      // padding: const EdgeInsets.fromLTRB(10, 10, 10, 6),
       height: 120,
-      width: double.maxFinite,
       child: Card(
         color: const Color.fromARGB(185, 255, 255, 255),
         elevation: 5,
         child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Stack(children: <Widget>[
-            Align(
-              alignment: Alignment.topRight,
-              child: Stack(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Column(
+            children: <Widget>[
+              Row(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0, top: 0),
-                      child: Row(
-                      children: <Widget>[
-                        salesorder(),
-                        const Spacer(),
-                        AllIcons(),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 50, // <-- SEE HERE
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0, top: 0),
-                    child: Row(
-                      children: <Widget>[
-                        company(),
-                        const Spacer(),
-                        Totalstatus(),
-                      ],
-                    ),
-                  )
+                  salesorder(name: name),
+                  const Spacer(),
+                  AllIcons(),
                 ],
               ),
-            )
-          ]),
+              Row(
+                children: <Widget>[
+                  company(
+                      customerName: customerName,
+                      companyName: companyName,
+                      date: date),
+                  const Spacer(),
+                  Totalstatus(state: state, price: price),
+                ],
+              ),
+              // const SizedBox(
+              //   height: 80, // <-- SEE HERE
+              // ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-Widget salesorder() {
+Widget salesorder({required String name}) {
   return Align(
     alignment: Alignment.topLeft,
     child: RichText(
-      text: const TextSpan(
-        text: "SO008",
-        style: TextStyle(
+      text: TextSpan(
+        text: name,
+        style: const TextStyle(
             fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
       ),
     ),
@@ -173,47 +172,84 @@ Widget AllIcons() {
   );
 }
 
-Widget company() {
-  return Align(
-    alignment: Alignment.bottomLeft,
-    child: RichText(
-      text: const TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-              text: "\nABG(1110)\nBashundhara",
-              style: TextStyle(
-                color: Color.fromARGB(147, 0, 0, 0),
-                fontSize: 15,
-              )),
-          TextSpan(
-              text: "\n11/23/2022",
-              style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold)),
-        ],
+Widget company({
+  required String customerName,
+  required String companyName,
+  required String date,
+}) {
+  return Column(
+    children: [
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text(customerName,
+            style: const TextStyle(
+              color: Color.fromARGB(147, 0, 0, 0),
+              fontSize: 15,
+            )),
       ),
-    ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text(companyName,
+            style: const TextStyle(
+              color: Color.fromARGB(147, 0, 0, 0),
+              fontSize: 15,
+            )),
+      ),
+      Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          date,
+          style: const TextStyle(
+            color: Color.fromARGB(147, 0, 0, 0),
+            fontSize: 15,
+          ),
+          textAlign: TextAlign.left,
+        ),
+      ),
+      // Align(
+      //   alignment: Alignment.bottomLeft,
+      //   child: RichText(
+      //     text: const TextSpan(
+      //       children: <TextSpan>[
+      //         TextSpan(
+      //             text: "\nABG(1110)\nBashundhara",
+      //             style: TextStyle(
+      //               color: Color.fromARGB(147, 0, 0, 0),
+      //               fontSize: 15,
+      //             )),
+      //         TextSpan(
+      //             text: "\n11/23/2022",
+      //             style: TextStyle(
+      //                 color: Colors.grey,
+      //                 fontSize: 15,
+      //                 fontWeight: FontWeight.bold)),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+    ],
   );
 }
 
-Widget Totalstatus() {
-  return Align(
-    alignment: Alignment.bottomRight,
-    child: RichText(
-      text: const TextSpan(
-        text: '\n1000000 BDT',
-        style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
-        children: <TextSpan>[
-          TextSpan(
-              text: '\n      Pending',
-              style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
-        ],
+Widget Totalstatus({required String price, required String state}) {
+  return Column(
+    children: [
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text('$price BDT',
+            style: const TextStyle(
+              color: Color.fromARGB(147, 0, 0, 0),
+              fontSize: 15,
+            )),
       ),
-    ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text(state,
+            style: const TextStyle(
+              color: Color.fromARGB(147, 0, 0, 0),
+              fontSize: 15,
+            )),
+      ),
+    ],
   );
 }

@@ -1,11 +1,8 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 import 'package:sale/widgets/band_color.dart';
-import 'package:sale/widgets/widget.dart';
+
 
 import 'add_product.dart';
 
@@ -49,7 +46,9 @@ class _ProductInfoState extends State<ProductInfo> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final double height = MediaQuery.of(context).size.height;
+    // ignore: unused_local_variable
     final double weidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -95,6 +94,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value.length < 3) {
                       return "*Write more then three word";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -130,6 +130,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value.length < 3) {
                       return "*Write more then three word";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -158,6 +159,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value!.isEmpty) {
                       return "*Write Product Quantity";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -187,6 +189,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value!.isEmpty) {
                       return "*Write Unit of Measure";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -216,6 +219,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value!.isEmpty) {
                       return "*Write Unit Price";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -245,6 +249,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value!.isEmpty) {
                       return "*Write Percent Off";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -274,6 +279,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     if (value!.isEmpty) {
                       return "*Write Subtotal";
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(

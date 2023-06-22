@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sale/Model_class/sales_user_model_class.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:sale/Sales%20Controller/SQuotation_controller.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import '../Search___Filter/filter.dart';
 import 'add_product.dart';
@@ -14,6 +16,11 @@ class sales extends StatefulWidget {
 }
 
 class _salesState extends State<sales> {
+  final data = Get.put(SaleQuotationController());
+  String formatDate(DateTime dateTime) {
+    return DateFormat('MM/dd/yyyy').format(dateTime);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,20 +65,60 @@ class _salesState extends State<sales> {
             ),
           ],
         ),
-        body: ListView.builder(
-            itemCount: DataModel.items.length,
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                child: const sales_widget(),
-                onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => const OrderPage(),
-                  //     ));
-                },
+        body: Obx(
+          () {
+            if (data.isLoading.value) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            }),
+            } else {
+              if (data.salesquot != null) {
+                // Display the invoice data using the invoiceModel
+                return ListView.builder(
+                  itemCount: data.salesquot!.result.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    //Result invoice = InvoiceListsController.invoiceModel!.result[index];
+                    return SalesWidget(
+                      state: data.salesquot!.result[index].state.name,
+                      price:
+                          data.salesquot!.result[index].amountTotal.toString(),
+                      name: data.salesquot!.result[index].name,
+                      customerName: data.salesquot!.result[index].customerName,
+                      companyName: data.salesquot!.result[index].companyName,
+                      date: formatDate(data.salesquot!.result[index].dateOrder),
+                    );
+                    // return InkWell(
+                    //   child: invoice_widget(invoice: invoice.name.toString()),
+                    //   onTap: () {
+                    //     // Handle invoice item tap
+                    //   },
+                    // );
+                  },
+                );
+              } else {
+                return const Center(
+                  child: Text('No data available'),
+                );
+              }
+            }
+          },
+        ),
+
+        // ListView.builder(
+        //     itemCount: DataModel.items.length,
+        //     itemBuilder: (BuildContext context, int index) {
+        //       return InkWell(
+        //         child: const sales_widget(),
+        //         onTap: () {
+        //           // Navigator.push(
+        //           //     context,
+        //           //     MaterialPageRoute(
+        //           //       builder: (context) => const OrderPage(),
+        //           //     ));
+        //         },
+        //       );
+        //     }),
+
         floatingActionButton: SpeedDial(
             child: const Icon(Icons.add),
             openForegroundColor: Colors.redAccent,
