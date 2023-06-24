@@ -6,7 +6,7 @@ import 'package:sale/widgets/custom_textfor_customer.dart';
 import 'package:sale/widgets/widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Invoice pages/invoice.dart';
-import 'Orderline.dart';
+import 'drapdown.dart';
 import 'orderlineinfo_widget.dart';
 import 'sales_page.dart';
 
@@ -171,7 +171,7 @@ class _AddProductState extends State<AddProduct> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ProductInfo(),
+                          builder: (context) =>  DrapdownOrder(),
                         ));
                   },
                   child: Center(
