@@ -19,7 +19,7 @@ class _SettingState extends State<Setting> {
   late SharedPreferences sharedPreferences;
   isLogout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('token');
+    prefs.remove('cookie');
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext ctx) => const LoginPage()));
   }

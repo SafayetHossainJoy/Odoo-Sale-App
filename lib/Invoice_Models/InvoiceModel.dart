@@ -40,17 +40,31 @@ class InvoiceModel {
 class Result {
   int? id;
   String? name;
-  dynamic companyName;
-  DateTime invoiceDate;
+  String? invoiceOrigin;
+  String? companyName;
+  String? customerName;
+  Street? street;
+  City? city;
+  StateAddress? stateAddress;
+  String? zip;
+  Country? country;
+  dynamic invoiceDate;
   List<Line>? lines;
   double? amountTotal;
-  dynamic state;
+  String? state;
 
   Result({
     this.id,
     this.name,
+    this.invoiceOrigin,
     this.companyName,
+    this.customerName,
+    this.street,
     required this.invoiceDate,
+    this.city,
+    this.stateAddress,
+    this.zip,
+    this.country,
     this.lines,
     this.amountTotal,
     this.state,
@@ -59,20 +73,34 @@ class Result {
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],
         name: json["name"],
-        companyName: json["company_name"]!,
-        invoiceDate: DateTime.parse(json["invoice_date"]),
+        invoiceOrigin: json["invoice_origin"],
+        companyName: json["company_name"],
+        customerName: json["customer_name"],
+        street: streetValues.map[json["street"]]!,
+        city: cityValues.map[json["city"]]!,
+        stateAddress: stateAddressValues.map[json["state_address"]]!,
+        zip: json["zip"],
+        country: countryValues.map[json["country"]]!,
+        invoiceDate:json["invoice_date"],
         lines: json["lines"] == null
             ? []
             : List<Line>.from(json["lines"]!.map((x) => Line.fromJson(x))),
         amountTotal: json["amount_total"]?.toDouble(),
-        state: json["state"]!,
+        state: json["state"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "company_name": companyName,
-        "invoice_date": invoiceDate.toIso8601String(),
+        "invoice_origin": invoiceOrigin,
+        "company_name": companyNameValues.reverse[companyName],
+        "customer_name": customerName,
+        "street": streetValues.reverse[street],
+        "city": cityValues.reverse[city],
+        "state_address": stateAddressValues.reverse[stateAddress],
+        "zip": zip,
+        "country": countryValues.reverse[country],
+        "invoice_date": invoiceDate,
         "lines": lines == null
             ? []
             : List<dynamic>.from(lines!.map((x) => x.toJson())),
@@ -81,14 +109,17 @@ class Result {
       };
 }
 
-enum CompanyName { ASH_TEST_CUSTOMER_1, ADMINISTRATOR, ANONYMOUS, S_FLUTTER }
+enum City { BEJA }
 
-final companyNameValues = EnumValues({
-  "Administrator": CompanyName.ADMINISTRATOR,
-  "anonymous": CompanyName.ANONYMOUS,
-  "ash test customer 1": CompanyName.ASH_TEST_CUSTOMER_1,
-  "S flutter": CompanyName.S_FLUTTER
-});
+final cityValues = EnumValues({"beja": City.BEJA});
+
+enum CompanyName { TRIVOZ_SALE }
+
+final companyNameValues = EnumValues({"TRIVOZ SALE": CompanyName.TRIVOZ_SALE});
+
+enum Country { PORTUGAL }
+
+final countryValues = EnumValues({"Portugal": Country.PORTUGAL});
 
 class Line {
   int? productId;
@@ -122,9 +153,17 @@ class Line {
       };
 }
 
-enum State { POSTED }
+enum State { POSTED, DRAFT }
 
-final stateValues = EnumValues({"posted": State.POSTED});
+final stateValues = EnumValues({"draft": State.DRAFT, "posted": State.POSTED});
+
+enum StateAddress { BEJA }
+
+final stateAddressValues = EnumValues({"Beja": StateAddress.BEJA});
+
+enum Street { BANASREE_DHAKA }
+
+final streetValues = EnumValues({"Banasree, Dhaka": Street.BANASREE_DHAKA});
 
 class EnumValues<T> {
   Map<String, T> map;

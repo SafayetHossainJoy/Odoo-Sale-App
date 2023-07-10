@@ -18,67 +18,17 @@ class SalesWidget extends StatelessWidget {
     required this.price,
   }) : super(key: key);
 
-  // Future<SalesQuotation?> fetchSalesQuotation() async {
-  //   final url = Uri.parse('http://testtrivoz.xsellencebdltd.com/api/v1/sales');
-  //   final response =
-  //       await http.post(url, body: '{"params":{"name": "S06607796"}}');
-  //   if (response.statusCode == 200) {
-  //     return salesQuotationFromJson(response.body);
-  //   } else {
-  //     throw Exception('Failed to fetch sales quotation');
-  //   }
-  // }
-  /*   getSalesQuotationData() async {
-    List<SalesQuotation> orderData = [];
-    var response = await http.get(
-        Uri.parse("http://testtrivoz.xsellencebdltd.com/api/v1/sales"),
-        headers: await CustomHttpRequest().getHeaderWithToken());
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      print("Order list are $data");
-      print(response.body);
-      for (var item in data) {}
-    }
-    return orderData;
-  }*/
-//   Future<SalesQuotation> fetchSalesQuotation() async {
-//   final response = await http.get(Uri.parse('http://testtrivoz.xsellencebdltd.com/api/v1/sales'));
-//   if (response.statusCode == 200) {
-//     return SalesQuotation.fromJson(json.decode(response.body));
-
-//   } else {
-//     throw Exception('Failed to load sales quotation');
-//   }
-
-// }
-
-/* 
-   getSalesQuotationData() async {
-    List<SalesQuotation> orderData = [];
-    var response = await http.get(
-        Uri.parse("http://testtrivoz.xsellencebdltd.com/api/v1/sales"),
-       
-        headers: {'Content-Type': 'application/json'},);
-    if (response.statusCode == 200) {
-      var data = json.encode({{"params":{"name": "S06607796"}}});
-      print("Order list are $data");
-      
-      // for (var item in data) {}
-    }
-    print(response.body);
-    return orderData;
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: const EdgeInsets.fromLTRB(10, 10, 10, 6),
+      padding: const EdgeInsets.fromLTRB(5, 5, 5, 3),
       height: 120,
+      width: double.maxFinite,
       child: Card(
-        color: const Color.fromARGB(185, 255, 255, 255),
-        elevation: 5,
+          color: const Color.fromARGB(185, 255, 255, 255),
+          elevation: 5,
         child: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
               Row(
@@ -115,8 +65,8 @@ Widget salesorder({required String name}) {
     child: RichText(
       text: TextSpan(
         text: name,
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
+      style: const TextStyle(
+          fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20,),
       ),
     ),
   );
@@ -182,10 +132,10 @@ Widget company({
       Align(
         alignment: Alignment.centerLeft,
         child: Text(customerName,
-            style: const TextStyle(
-              color: Color.fromARGB(147, 0, 0, 0),
-              fontSize: 15,
-            )),
+           style: const TextStyle(
+                color: Color.fromARGB(147, 0, 0, 0),
+                fontSize: 15,
+              )),
       ),
       Align(
         alignment: Alignment.centerLeft,
@@ -200,33 +150,13 @@ Widget company({
         child: Text(
           date,
           style: const TextStyle(
-            color: Color.fromARGB(147, 0, 0, 0),
-            fontSize: 15,
-          ),
+                  color: Colors.grey,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
           textAlign: TextAlign.left,
         ),
       ),
-      // Align(
-      //   alignment: Alignment.bottomLeft,
-      //   child: RichText(
-      //     text: const TextSpan(
-      //       children: <TextSpan>[
-      //         TextSpan(
-      //             text: "\nABG(1110)\nBashundhara",
-      //             style: TextStyle(
-      //               color: Color.fromARGB(147, 0, 0, 0),
-      //               fontSize: 15,
-      //             )),
-      //         TextSpan(
-      //             text: "\n11/23/2022",
-      //             style: TextStyle(
-      //                 color: Colors.grey,
-      //                 fontSize: 15,
-      //                 fontWeight: FontWeight.bold)),
-      //       ],
-      //     ),
-      //   ),
-      // ),
+
     ],
   );
 }
@@ -237,18 +167,18 @@ Widget Totalstatus({required String price, required String state}) {
       Align(
         alignment: Alignment.centerLeft,
         child: Text('$price BDT',
-            style: const TextStyle(
-              color: Color.fromARGB(147, 0, 0, 0),
-              fontSize: 15,
-            )),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),),
       ),
       Align(
         alignment: Alignment.centerLeft,
         child: Text(state,
-            style: const TextStyle(
-              color: Color.fromARGB(147, 0, 0, 0),
-              fontSize: 15,
-            )),
+          style: const TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),),
       ),
     ],
   );

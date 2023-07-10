@@ -58,7 +58,7 @@ Widget salesorder({required String name}) {
     text: TextSpan(
       text: name,
       style: const TextStyle(
-          fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
+            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
     ),
   );
 }
@@ -96,20 +96,20 @@ Widget company({
   return Column(
     children: [
       Text(address,
-          style: const TextStyle(
-            color: Color.fromARGB(147, 0, 0, 0),
-            fontSize: 15,
-          )),
+         style: const TextStyle(
+                color: Color.fromARGB(147, 0, 0, 0),
+                fontSize: 15,
+              )),
       Text(origin,
           style: const TextStyle(
-            color: Color.fromARGB(147, 0, 0, 0),
-            fontSize: 15,
-          )),
+                color: Color.fromARGB(147, 0, 0, 0),
+                fontSize: 15,
+              )),
       Text(date,
           style: const TextStyle(
-            color: Color.fromARGB(147, 0, 0, 0),
-            fontSize: 15,
-          ))
+                  color: Colors.grey,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold))
     ],
   );
 }
@@ -121,15 +121,13 @@ Widget Totalstatus({
   return Column(
     children: [
       Text('$item Items',
-          style: const TextStyle(
-            color: Color.fromARGB(147, 0, 0, 0),
-            fontSize: 15,
-          )),
+        style: const TextStyle(
+            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
       Text(status,
-          style: const TextStyle(
-            color: Color.fromARGB(147, 0, 0, 0),
-            fontSize: 15,
-          )),
+           style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold)),
     ],
   );
 }

@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../Delivery_controller/deliverycontroller.dart';
 import '../Search___Filter/filter.dart';
-import 'delivery_widget copy.dart';
+import 'delivery_widget.dart';
+
 
 class Delivery extends StatefulWidget {
   const Delivery({super.key});
@@ -15,7 +16,7 @@ class Delivery extends StatefulWidget {
 class _DeliveryState extends State<Delivery> {
   final data = Get.put(DeliveryController());
   String formatDate(DateTime? dateTime) {
-    return DateFormat('MM/dd/yyyy').format(dateTime!);
+    return DateFormat('yyyy-MM-dd').format(dateTime!);
   }
 
   @override

@@ -86,19 +86,7 @@ class _NewCustomerState extends State<NewCustomer> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Container(
-            //   margin: const EdgeInsets.only(left: 20, top: 20),
-            //   child: const Text(
-            //     "Create New Customer",
-            //     style: TextStyle(
-            //         fontSize: 25,
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 35,
-            // ),
+        
             const Text(
               'Company Name',
               style: TextStyle(

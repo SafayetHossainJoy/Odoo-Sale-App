@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:sale/widgets/custom_TextField.dart';
+import 'package:sale/widgets/widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Navigation Bar/navigation_ber.dart';
@@ -20,54 +21,64 @@ class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
   bool hidePassword = true;
   String loginLink =
-      "http://testtrivoz.xsellencebdltd.com/web/session/authenticate";
-
-  late SharedPreferences sharedPreferences;
+      "http://testii.xsellencebdltd.com/web/session/authenticate";
 
   // check use is login or not if login then goto next page and save user data and one time login
-  isLogin() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getString("token") != null) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const Navigation_bar()));
-    } else {
-      print("Token is empty");
-    }
-  }
 
-  Future<void> login() async {
-    if (passwordController.text.isNotEmpty && loginController.text.isNotEmpty) {
-      var data = json.encode({"jsonrpc":"2.0", "params":{"db": "testtrivoz","login": "user1@gmail.com","password": "user1"}});
+  Future<void> login({required String email, required String password}) async {
+    islogin = true;
 
-      var response = await http.post(
-        Uri.parse(
-            "http://testtrivoz.xsellencebdltd.com/web/session/authenticate"),
-        body: data,
-        headers: {'Content-Type': 'application/json'},
-      );
-      print(response.body);
-      if (response.statusCode == 200) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Navigation_bar()));
+    var headers = {
+      'Content-Type': 'application/json',
+    };
+    var request = http.Request('POST',
+        Uri.parse('http://testii.xsellencebdltd.com/web/session/authenticate'));
+    request.body = json.encode({
+      "jsonrpc": "2.0",
+      "params": {"db": "testii", "login": email, "password": password}
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responseString = await response.stream.bytesToString();
+      print(responseString);
+
+      var responseData = json.decode(responseString);
+      var result = responseData['result'];
+
+      var cookies = response.headers['set-cookie'];
+      String? sessionID;
+      if (cookies != null) {
+        var cookieParts =
+            cookies.split(';'); // Split the cookie string into individual parts
+        for (var part in cookieParts) {
+          if (part.trim().startsWith('session_id=')) {
+            sessionID = part.trim().substring('session_id='.length);
+            break;
+          }
+        }
+      }
+
+// Store the session ID
+
+      if (result['id'] != 0 && sessionID != null) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('cookie', 'session_id=$sessionID').then((value) =>
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const Navigation_bar())));
       } else {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Invalid Credentials.")));
+        showInToast('Invalid Input');
       }
     } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Enter Your Email & Password")));
+      print(response.reasonPhrase);
     }
   }
 
   String? token;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    isLogin();
-    super.initState();
-  }
-
+  bool islogin = false;
   @override
   Widget build(BuildContext context) {
     return initWidget();
@@ -149,9 +160,16 @@ class _LoginPageState extends State<LoginPage> {
                   Icon(hidePassword ? Icons.visibility_off : Icons.visibility),
             ),
           ),
-          MaterialButton(
-            onPressed: () {
-              login();
+          InkWell(
+            onTap: () {
+              if (loginController.text.isNotEmpty &&
+                  passwordController.text.isNotEmpty) {
+                login(
+                    email: loginController.text.trim(),
+                    password: passwordController.text);
+              } else {
+                showInToast('all required filled');
+              }
             },
             child: Container(
               alignment: Alignment.center,
@@ -172,13 +190,15 @@ class _LoginPageState extends State<LoginPage> {
                       color: Color(0xffEEEEEE)),
                 ],
               ),
-              child: const Text(
-                "LOGIN",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
+              child: islogin
+                  ? CircularProgressIndicator()
+                  : const Text(
+                      "LOGIN",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
             ),
           ),
         ]),

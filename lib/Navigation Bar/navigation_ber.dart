@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sale/widgets/band_color.dart';
 
 import '../Delivery pages/delivery_page.dart';
 import '../Invoice pages/invoice.dart';
+import '../Sales Controller/SQuotation_controller.dart';
 import '../Sales pages/sales_page.dart';
 import '../Setting pages/setting.dart';
 
@@ -15,6 +17,12 @@ class Navigation_bar extends StatefulWidget {
 }
 
 class _Navigation_barState extends State<Navigation_bar> {
+  @override
+  void initState() {
+    Get.put(SaleQuotationController()).fetchsalesquot();
+    super.initState();
+  }
+
   List pages = [
     const sales(),
     const Invoice(),

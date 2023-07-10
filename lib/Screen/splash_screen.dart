@@ -2,9 +2,10 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:sale/Navigation%20Bar/navigation_ber.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Login screen/login.dart';
-
 
 // ignore: camel_case_types
 class splash_screen extends StatefulWidget {
@@ -21,10 +22,18 @@ class _splash_screenState extends State<splash_screen> {
     super.initState();
     // ignore: todo
     // TODO: implement initState
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => const LoginPage())));
+    Timer(const Duration(seconds: 3), () => isLogin());
+  }
+
+  isLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('cookie') != null) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Navigation_bar()));
+    } else {
+      Navigator.push(
+          context, CupertinoPageRoute(builder: (_) => const LoginPage()));
+    }
   }
 
   @override
