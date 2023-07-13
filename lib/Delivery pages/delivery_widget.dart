@@ -26,7 +26,7 @@ class delivery_widget extends StatelessWidget {
       width: double.maxFinite,
       child: Card(
         color: const Color.fromARGB(185, 255, 255, 255),
-        elevation: 5,
+        elevation: 1,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -58,8 +58,9 @@ Widget salesorder({required String name}) {
     text: TextSpan(
       text: name,
       style: const TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
+            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
     ),
+     textAlign: TextAlign.start,
   );
 }
 
@@ -98,17 +99,17 @@ Widget company({
       Text(address,
          style: const TextStyle(
                 color: Color.fromARGB(147, 0, 0, 0),
-                fontSize: 15,
+                fontSize: 16,
               )),
       Text(origin,
           style: const TextStyle(
                 color: Color.fromARGB(147, 0, 0, 0),
-                fontSize: 15,
+                fontSize: 16,
               )),
       Text(date,
           style: const TextStyle(
                   color: Colors.grey,
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold))
     ],
   );
@@ -122,11 +123,11 @@ Widget Totalstatus({
     children: [
       Text('$item Items',
         style: const TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
+            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),),
       Text(status,
            style: TextStyle(
                   color: Colors.green,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold)),
     ],
   );

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:sale/Partner_Controller/UserController.dart';
 import 'package:sale/widgets/custom_textfor_customer.dart';
 
-import 'sales_page.dart';
+import '../Sales pages/sales_page.dart';
 
 class NewCustomer extends StatefulWidget {
   const NewCustomer({Key? key}) : super(key: key);

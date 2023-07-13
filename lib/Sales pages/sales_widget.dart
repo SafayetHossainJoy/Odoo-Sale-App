@@ -21,12 +21,12 @@ class SalesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(5, 5, 5, 3),
-      height: 120,
+      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+      height: 110,
       width: double.maxFinite,
       child: Card(
           color: const Color.fromARGB(185, 255, 255, 255),
-          elevation: 5,
+          elevation: 1,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -61,13 +61,14 @@ class SalesWidget extends StatelessWidget {
 
 Widget salesorder({required String name}) {
   return Align(
-    alignment: Alignment.topLeft,
+    alignment: Alignment.centerRight,
     child: RichText(
       text: TextSpan(
         text: name,
       style: const TextStyle(
-          fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20,),
+          fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18,),
       ),
+      textAlign: TextAlign.start,
     ),
   );
 }
@@ -81,7 +82,7 @@ Widget AllIcons() {
         Row(
           children: [
             SizedBox(
-              height: 25,
+              height: 22,
               child: Image.asset(
                 'assets/icons/sales.png',
                 color: const Color.fromARGB(255, 95, 218, 99),
@@ -95,7 +96,7 @@ Widget AllIcons() {
         Row(
           children: [
             SizedBox(
-              height: 25,
+              height: 21,
               child: Image.asset(
                 'assets/icons/invoice1.png',
                 color: const Color.fromARGB(255, 122, 95, 218),
@@ -109,7 +110,7 @@ Widget AllIcons() {
         Row(
           children: [
             SizedBox(
-              height: 30,
+              height: 28,
               child: Image.asset(
                 'assets/icons/delivery.png',
                 color: const Color.fromARGB(255, 240, 68, 62),
@@ -130,30 +131,35 @@ Widget company({
   return Column(
     children: [
       Align(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         child: Text(customerName,
            style: const TextStyle(
                 color: Color.fromARGB(147, 0, 0, 0),
-                fontSize: 15,
-              )),
+                fontSize: 16,
+              ),
+              textAlign: TextAlign.start,
+              ),
       ),
       Align(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         child: Text(companyName,
             style: const TextStyle(
               color: Color.fromARGB(147, 0, 0, 0),
-              fontSize: 15,
-            )),
+              fontSize: 16,
+            ),
+            textAlign: TextAlign.start,
+            ),
+            
       ),
       Align(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.centerRight,
         child: Text(
           date,
           style: const TextStyle(
                   color: Colors.grey,
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold),
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.start,
         ),
       ),
 
@@ -169,7 +175,7 @@ Widget Totalstatus({required String price, required String state}) {
         child: Text('$price BDT',
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold),),
       ),
       Align(
@@ -177,7 +183,7 @@ Widget Totalstatus({required String price, required String state}) {
         child: Text(state,
           style: const TextStyle(
                   color: Colors.red,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold),),
       ),
     ],

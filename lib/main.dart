@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sale/All_in_one.dart';
 //import 'package:sale/All_in_one.dart';
 
-import 'All_in_one.dart';
+//import 'All_in_one.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       //home: splash_screen(),
       // home: Navigation_bar(),
       home: HomePage(),
+      //home: CustomerList(),
     );
   }
 }

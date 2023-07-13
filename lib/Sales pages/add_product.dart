@@ -240,55 +240,55 @@ class _AddProductState extends State<AddProduct> {
                 //     fontWeight: FontWeight.w700,
                 //   ),
                 // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // DropdownButtonFormField<String>(
-                //   value: _selectedPriceList,
-                //   onChanged: (newValue) {
-                //     setState(() {
-                //       _selectedPriceList = newValue!;
-                //     });
-                //   },
-                //   items: <String>[
-                //     'Public Pricelist',
-                //     'USD',
-                //   ].map<DropdownMenuItem<String>>((String value) {
-                //     return DropdownMenuItem<String>(
-                //       value: value,
-                //       child: Text(value),
-                //     );
-                //   }).toList(),
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(
-                //       borderRadius: BorderRadius.circular(10.0),
-                //       gapPadding: 5.0,
-                //       borderSide: const BorderSide(
-                //         color: Colors.black,
-                //         width: 2.5,
-                //       ),
-                //     ),
-                //     hintText: 'Select Price List',
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 12,
-                // ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DropdownButtonFormField<String>(
+                  value: _selectedPriceList,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _selectedPriceList = newValue!;
+                    });
+                  },
+                  items: <String>[
+                    'Public Pricelist',
+                    'USD',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      gapPadding: 5.0,
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2.5,
+                      ),
+                    ),
+                    hintText: 'Select Price List',
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
 
-                // const Divider(
-                //   thickness: 2,
-                //   indent: 7,
-                //   endIndent: 7,
-                // ),
-
-                // const SizedBox(
-                //   height: 6,
-                // ),
-                // // const orderlineinfo_widget(),
-                const SizedBox(height: 100, child: ProductList()),
+                const Divider(
+                  thickness: 2,
+                  indent: 7,
+                  endIndent: 7,
+                ),
 
                 const SizedBox(
-                  height: 15,
+                  height: 6,
+                ),
+                // // const orderlineinfo_widget(),
+                const SizedBox(height: 175, child: ProductList()),
+
+                const SizedBox(
+                  height: 5,
                 ),
                 GestureDetector(
                   onTap: () {

@@ -146,7 +146,6 @@ class _ProductInfoState extends State<ProductInfo> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                
                   const Text('Quantity'),
                   const SizedBox(height: 10),
                   TextFormField(
@@ -160,6 +159,8 @@ class _ProductInfoState extends State<ProductInfo> {
                       }
                       return null;
                     },
+                    keyboardType:
+                        TextInputType.number, // Set input type to number
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -173,7 +174,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                 
+
                   const Text('Unit Price'),
                   const SizedBox(height: 10),
                   TextFormField(
@@ -187,6 +188,8 @@ class _ProductInfoState extends State<ProductInfo> {
                       }
                       return null;
                     },
+                     keyboardType:
+                        TextInputType.number, 
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -239,6 +242,8 @@ class _ProductInfoState extends State<ProductInfo> {
                       }
                       return null;
                     },
+                     keyboardType:
+                        TextInputType.number, 
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),

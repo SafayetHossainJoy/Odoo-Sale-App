@@ -5,7 +5,7 @@ import 'package:sale/Sales%20Controller/SQuotation_controller.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import '../Search___Filter/filter.dart';
 import 'add_product.dart';
-import 'createnewcustomer.dart';
+import '../Customer List/createnewcustomer.dart';
 import 'sales_widget.dart';
 
 class sales extends StatefulWidget {
