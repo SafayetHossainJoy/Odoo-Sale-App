@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class InvoicWidget extends StatelessWidget {
   final String name;
-  final String companyName;
+  final String customerName;
   final String invoiceOrigin;
   final String state;
   final String price;
@@ -11,7 +11,7 @@ class InvoicWidget extends StatelessWidget {
   const InvoicWidget({
     Key? key,
     required this.name,
-    required this.companyName,
+    required this.customerName,
     required this.invoiceOrigin,
     required this.state,
     required this.price,
@@ -41,7 +41,7 @@ class InvoicWidget extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    company(companyName: companyName,invoiceOrigin: invoiceOrigin, 
+                    company(customerName: customerName,invoiceOrigin: invoiceOrigin, 
                     date: date 
                     ),
                     const Spacer(),
@@ -90,10 +90,10 @@ Widget AllIcons() {
   );
 }
 
-Widget company({required String companyName,required String invoiceOrigin,required String date }) {
+Widget company({required String customerName, required String invoiceOrigin,required String date,  }) {
   return Column(
     children: [
-      Text(companyName,
+      Text(customerName,
           style: TextStyle(
             color: Color.fromARGB(147, 0, 0, 0),
             fontSize: 16,

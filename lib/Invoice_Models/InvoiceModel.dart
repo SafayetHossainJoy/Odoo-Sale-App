@@ -45,7 +45,7 @@ class Result {
   String? customerName;
   Street? street;
   City? city;
-  StateAddress? stateAddress;
+  dynamic stateAddress;
   String? zip;
   Country? country;
   dynamic invoiceDate;
@@ -78,7 +78,7 @@ class Result {
         customerName: json["customer_name"],
         street: streetValues.map[json["street"]]!,
         city: cityValues.map[json["city"]]!,
-        stateAddress: stateAddressValues.map[json["state_address"]]!,
+        stateAddress: json["state_address"]!,
         zip: json["zip"],
         country: countryValues.map[json["country"]]!,
         invoiceDate:json["invoice_date"],
@@ -97,7 +97,7 @@ class Result {
         "customer_name": customerName,
         "street": streetValues.reverse[street],
         "city": cityValues.reverse[city],
-        "state_address": stateAddressValues.reverse[stateAddress],
+        "state_address": stateAddress,
         "zip": zip,
         "country": countryValues.reverse[country],
         "invoice_date": invoiceDate,
