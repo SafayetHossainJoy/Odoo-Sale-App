@@ -54,31 +54,17 @@ class _DeliveryState extends State<Delivery> {
             );
           } else {
             if (data.deliveryData != null) {
-              // Display the invoice data using the invoiceModel
               return ListView.builder(
                 itemCount: data.deliveryData?.result?.length,
                 itemBuilder: (BuildContext context, index) {
-                  //Result invoice = InvoiceListsController.invoiceModel!.result[index];
                   return delivery_widget(
-                    address: data.deliveryData!.result![index].deliveryAddress
-                        .toString(),
+                    address: data.deliveryData!.result![index].deliveryAddress.toString(),
                     origin: data.deliveryData!.result![index].origin.toString(),
-                    date: formatDate(
-                        data.deliveryData!.result![index].scheduledDate),
+                    date: formatDate( data.deliveryData!.result![index].scheduledDate),
                     status: data.deliveryData!.result![index].status.toString(),
-                    item: data.deliveryData!.result![index]
-                        .moveIdsWithoutPackage![0].productUomQty
-                        .toString(),
-                    name: data.deliveryData!.result![index].name
-                        .toString()
-                        .toString(),
-                  );
-                  // return InkWell(
-                  //   child: invoice_widget(invoice: invoice.name.toString()),
-                  //   onTap: () {
-                  //     // Handle invoice item tap
-                  //   },
-                  // );
+                    item: data.deliveryData!.result![index].moveIdsWithoutPackage![0].productUomQty.toString(),
+                    name: data.deliveryData!.result![index].name.toString(),
+                  );    
                 },
               );
             } else {
